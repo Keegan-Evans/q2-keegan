@@ -21,8 +21,3 @@ class Vanilla(model.TextFileFormat):
                 raise ValidationError(
                         "Contains illegal characters on lines:\n%s" %
                         list(illegal_chars.keys()))
-
-
-if __name__ == "__main__":
-    vt = Vanilla(sys.argv[1])
-    vt._validate_()
