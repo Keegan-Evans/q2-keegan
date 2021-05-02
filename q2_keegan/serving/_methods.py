@@ -1,6 +1,6 @@
 from .. import Vanilla
 
-from qiime2.plugin import Str, Choices
+from qiime2.plugin import Str, Choices, Bool
 
 from ..plugin_setup import plugin
 
@@ -16,9 +16,11 @@ plugin.methods.register_function(
         'text': Vanilla,
         },
     parameters={
-        'case_mod': str % ['all', 'none', 'inverse'],
+        'case_mod': Str % Choices(['all', 'none', 'inverse']),
+        'sort_ascending': Bool,
+        'sort_descending': Bool,
         },
-    outputs={},
+    outputs={('modified text', Vanilla)},
     name='sprinkles',
     description=('Changes the case of the text in a Vanilla artifact')
 )
