@@ -16,8 +16,9 @@ plugin.methods.register_function(
         'text': Vanilla,
         },
     parameters={
-        'case_mod': Str % Choices(['all', 'none', 'inverse'])
+        'case_mod': str % ['all', 'none', 'inverse'],
         },
+    outputs={},
     name='sprinkles',
     description=('Changes the case of the text in a Vanilla artifact')
 )
