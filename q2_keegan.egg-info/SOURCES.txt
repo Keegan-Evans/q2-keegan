@@ -1,0 +1,7 @@
+setup.py
+q2_keegan.egg-info/PKG-INFO
+q2_keegan.egg-info/SOURCES.txt
+q2_keegan.egg-info/dependency_links.txt
+q2_keegan.egg-info/entry_points.txt
+q2_keegan.egg-info/not-zip-safe
+q2_keegan.egg-info/top_level.txt
