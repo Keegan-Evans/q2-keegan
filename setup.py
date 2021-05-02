@@ -13,6 +13,8 @@ setup(
         "qiime2.plugins":
         ["q2-keegan=q2_keegan.plugin_setup:plugin"]
     },
-    package_data={'q2_keegan': []},
+    package_data={'q2_keegan': ['assets/scooper/index.html',
+                                'assets/hello_bean/index.html',
+                               ]},
     zip_safe=False
 )

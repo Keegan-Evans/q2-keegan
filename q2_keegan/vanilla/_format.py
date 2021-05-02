@@ -4,8 +4,11 @@ import sys
 import qiime2.plugin.model as model
 from qiime2.plugin import ValidationError
 
-class Vanilla(model.TextFileFormat):
-    def _validate_(self):
+from ..plugin_setup import plugin
+
+class VanillaBean(model.TextFileFormat):
+
+    def _validate_(self, level):
         accepted_characters = r'[a-zA-Z\s]'
         with self.open() as fh:
 
@@ -21,3 +24,9 @@ class Vanilla(model.TextFileFormat):
                 raise ValidationError(
                         "Contains illegal characters on lines:\n%s" %
                         list(illegal_chars.keys()))
+
+
+VanillaBeanDirFmt = model.SingleFileDirectoryFormat('VanillaBeanDirFmt',
+                                                    'vanilla.VanillaBean',
+                                                    VanillaBean)
+plugin.register_formats(VanillaBean, VanillaBeanDirFmt)

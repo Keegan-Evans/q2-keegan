@@ -1,0 +1,3 @@
+[qiime2.plugins]
+q2-keegan = q2_keegan.plugin_setup:plugin
+
