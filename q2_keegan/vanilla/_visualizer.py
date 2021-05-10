@@ -24,8 +24,13 @@ def scooper(output_dir: str, in_txt: VanillaBeanFmt) -> None:
     
     with open(os.path.join(output_dir, text_out), 'w') as fh:
         
+        fh.write('{ extends "index.html" }')
+        fh.write("{ block content }\n<pre>")
+        
         for i in src_txt:
             fh.writelines(i)
+        
+        fh.write("</pre>\n{ endblock }")
 
     index = os.path.join(TEMPLATES, 'scooper', 'index.html')
     
