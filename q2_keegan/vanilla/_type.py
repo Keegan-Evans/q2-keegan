@@ -2,14 +2,13 @@ from qiime2.plugin import SemanticType
 
 from ..plugin_setup import plugin
 
-from . import VanillaBean, VanillaBeanDirFmt
+from . import VanillaBeanFmt, VanillaBeanDirFmt
 
-Vanilla = SemanticType('Vanilla')
+IceCream = SemanticType('IceCream')
 
-plugin.register_semantic_types(Vanilla)
-
+plugin.register_semantic_types(IceCream) 
 
 plugin.register_semantic_type_to_format(
-    Vanilla,
+    IceCream,
     artifact_format=VanillaBeanDirFmt
 )

@@ -6,7 +6,7 @@ from qiime2.plugin import ValidationError
 
 from ..plugin_setup import plugin
 
-class VanillaBean(model.TextFileFormat):
+class VanillaBeanFmt(model.TextFileFormat):
 
     def _validate_(self, level):
         accepted_characters = r'[a-zA-Z\s]'
@@ -27,6 +27,8 @@ class VanillaBean(model.TextFileFormat):
 
 
 VanillaBeanDirFmt = model.SingleFileDirectoryFormat('VanillaBeanDirFmt',
-                                                    'vanilla.VanillaBean',
-                                                    VanillaBean)
-plugin.register_formats(VanillaBean, VanillaBeanDirFmt)
+                                                    'vanillabean.tsv',
+                                                    VanillaBeanFmt)
+plugin.register_formats(VanillaBeanFmt, VanillaBeanDirFmt)
+
+#plugin.register_views(VanillaBeanFmt, VanillaBeanDirFmt)
