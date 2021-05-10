@@ -4,6 +4,8 @@ import pkg_resources
 
 import q2templates
 
+from . import VanillaBeanFmt, IceCream
+from qiime2.plugin import Str
 from ..plugin_setup import plugin
 
 # TEMPLATES = pkg_resources.resource_filename('q2_keegan','vanilla', 'assets')
@@ -16,11 +18,21 @@ def hello_bean(output_dir: str) -> None:
     q2templates.render(index, output_dir)
     print('hello bean')
 
-def scooper(output_dir: str) -> None:
-    # with open(os.path.join(output_dir, test_input), 'w') as fh:
-    #     fh.write(test_input)
+def scooper(output_dir: str, in_txt: VanillaBeanFmt) -> None:
+    src_txt = in_txt.open().readlines()
+    text_out = 'text.txt'
+    
+    with open(os.path.join(output_dir, text_out), 'w') as fh:
+        
+        for i in src_txt:
+            fh.writelines(i)
+
     index = os.path.join(TEMPLATES, 'scooper', 'index.html')
-    q2templates.render(index, output_dir)
+    
+    q2templates.render(index, 
+                       output_dir,
+                       context={'textout': text_out,
+                                })
 
 plugin.visualizers.register_function(
     function=hello_bean,
@@ -32,7 +44,9 @@ plugin.visualizers.register_function(
 
 plugin.visualizers.register_function(
     function=scooper,
-    inputs={},
+    inputs={
+        'in_txt': IceCream,
+        },
     parameters={},
     name='scooper',
     description='A scoop of sweet treat',
