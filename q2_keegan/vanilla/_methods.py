@@ -47,8 +47,6 @@ def sprinkle(input_ice_cream: VanillaBeanFmt,
     if sort_var is not None:
         contents.sort(key=lambda x: x[0].lower(), reverse=sort_var)
 
-    print(contents)
-
     # Apply the desired case transformation
     case_transformer = {
             'all_upper': str.upper,

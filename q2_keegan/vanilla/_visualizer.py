@@ -1,6 +1,7 @@
 import json
 import os.path
 import pkg_resources
+import shutil
 
 import q2templates
 
@@ -11,8 +12,6 @@ from ..plugin_setup import plugin
 # TEMPLATES = pkg_resources.resource_filename('q2_keegan','vanilla', 'assets')
 TEMPLATES = pkg_resources.resource_filename('q2_keegan', 'assets')
 
-test_input = "some test input"
-
 def hello_bean(output_dir: str) -> None:
     index = os.path.join(TEMPLATES, 'hello_bean', 'index.html')
     q2templates.render(index, output_dir)
@@ -20,23 +19,13 @@ def hello_bean(output_dir: str) -> None:
 
 def scooper(output_dir: str, in_txt: VanillaBeanFmt) -> None:
     src_txt = in_txt.open().readlines()
-    text_out = 'text.txt'
-    
-    with open(os.path.join(output_dir, text_out), 'w') as fh:
-        
-        fh.write('{ extends "index.html" }')
-        fh.write("{ block content }\n<pre>")
-        
-        for i in src_txt:
-            fh.writelines(i)
-        
-        fh.write("</pre>\n{ endblock }")
+    src_txt[-1] = src_txt[-1].rstrip('\n')
 
     index = os.path.join(TEMPLATES, 'scooper', 'index.html')
     
-    q2templates.render(index, 
+    q2templates.render(index,
                        output_dir,
-                       context={'textout': text_out,
+                       context={'src_txt': src_txt,
                                 })
 
 plugin.visualizers.register_function(

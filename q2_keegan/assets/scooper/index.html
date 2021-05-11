@@ -3,10 +3,14 @@
 {% block head %}
 <style type="text/css">
   .viz {
-    padding-top: 5px;
+    padding-top: 55px;
   }
 
 </style>
 {% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+<pre>
+{% for line in src_txt %}{{ line }}{%- endfor %}
+</pre>
+{% endblock %}

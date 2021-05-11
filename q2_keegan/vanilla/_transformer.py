@@ -13,9 +13,8 @@ def _py_list_to_vanilla_bean(in_list):
     ff = VanillaBeanFmt()
 
     with ff.open() as fh:
-       # vanillaWriter = csv.writer(fh, delimiter="\t")
         for i in in_list:
-            fh.write(str(i + "\n"))
+            fh.write(str(i))
 
     return ff
 
