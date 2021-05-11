@@ -58,8 +58,7 @@ def sprinkle(icecream: VanillaBeanFmt,
     for i, line in enumerate(contents, 0):
         contents[i] = case_transformer(line)
 
-    print(contents)
-    return ['a']
+    return contents
 
 # sort_ascending, sort_descending, out_text = TypeMap({
 #     (Bool % Choices([False]),
