@@ -17,15 +17,13 @@ def hello_bean(output_dir: str) -> None:
     q2templates.render(index, output_dir)
     print('hello bean')
 
-def scooper(output_dir: str, in_txt: VanillaBeanFmt) -> None:
-    src_txt = in_txt.open().readlines()
-    src_txt[-1] = src_txt[-1].rstrip('\n')
-
+def scooper(output_dir: str, in_txt: list) -> None:
     index = os.path.join(TEMPLATES, 'scooper', 'index.html')
+    print(in_txt)
     
     q2templates.render(index,
                        output_dir,
-                       context={'src_txt': src_txt,
+                       context={'src_txt': in_txt,
                                 })
 
 plugin.visualizers.register_function(

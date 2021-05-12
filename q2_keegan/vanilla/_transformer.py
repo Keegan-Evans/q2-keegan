@@ -6,15 +6,21 @@ from ..plugin_setup import plugin
 
 def _vanilla_bean_to_py_list(ff):
     with ff.open() as fh:
-        return [i.rstrip() for i in fh.readlines()]
+        return [i.strip('\n') for i in fh.readlines()]
+        #return [i.rstrip() if i.strip() else i for i in fh.readlines()]
+    
+        #return [i for i in fh.readlines()]
 
 def _py_list_to_vanilla_bean(in_list):
     
     ff = VanillaBeanFmt()
 
     with ff.open() as fh:
-        for i in in_list:
-            fh.write(str(i))
+        for item in in_list:
+            fh.write(str(item.rstrip('\n') + '\n'))
+        # for item in in_list[:-1]:
+        #     fh.write(str(item + "\n"))
+        # fh.write(in_list[-1])
 
     return ff
 

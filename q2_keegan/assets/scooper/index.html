@@ -11,6 +11,8 @@
 
 {% block content %}
 <pre>
-{% for line in src_txt %}{{ line }}{%- endfor %}
+{%- for line in src_txt %}
+{{ line }}
+{%- endfor %}
 </pre>
 {% endblock %}
