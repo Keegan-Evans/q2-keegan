@@ -30,14 +30,14 @@ plugin.methods.register_function(
 def sprinkle(icecream: VanillaBeanFmt,
              capitalization: str,
              sort_ascending: bool = False,
-             sort_descending: bool = False) -> VanillaBeanFmt:
+             sort_descending: bool = False) -> list:
 
     contents = []
 
+    # Remove Blank Lines
     with icecream.open() as fh:
         for line in fh:
-            if line.rstrip():
-                contents.append(line)
+            contents.append(line)
 
     # Sort if appropriate 
     sort_var = None
@@ -60,17 +60,17 @@ def sprinkle(icecream: VanillaBeanFmt,
 
     return contents
 
-# sort_ascending, sort_descending, out_text = TypeMap({
-#     (Bool % Choices([False]),
-#      Bool % Choices([False])):
-#      IceCream,
-#     (Bool % Choices([True]), 
-#      Bool % Choices([False])):
-#      IceCream,
-#     (Bool % Choices([False]), 
-#      Bool % Choices([True])):
-#      IceCream,
-# })
+sort_ascending, sort_descending, out_text = TypeMap({
+    (Bool % Choices([False]),
+     Bool % Choices([False])):
+     IceCream,
+    (Bool % Choices([True]), 
+     Bool % Choices([False])):
+     IceCream,
+    (Bool % Choices([False]), 
+     Bool % Choices([True])):
+     IceCream,
+})
 
 plugin.methods.register_function(
     function=sprinkle,
@@ -79,10 +79,10 @@ plugin.methods.register_function(
         },
     parameters={
         'capitalization': Str % Choices(['upper', 'lower', 'invert']),
-        'sort_ascending': Bool,
-        'sort_descending': Bool,
+        'sort_ascending': sort_ascending,
+        'sort_descending': sort_descending,
         },
-    outputs={('modified', IceCream)},
+    outputs={('modified', out_text)},
     name='sprinkles',
     description=('Changes the case of the text in a IceCream artifact.'
                  'Also, you can sort text lines if you want to.')
