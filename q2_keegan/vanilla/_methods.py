@@ -1,5 +1,3 @@
-import os
-
 import csv
 
 from . import VanillaBeanFmt, IceCream
@@ -9,14 +7,15 @@ from ..plugin_setup import plugin
 
 
 def syrup() -> VanillaBeanFmt:
-    
+
     ff = VanillaBeanFmt()
 
     with ff.open() as fh:
         pour = csv.writer(fh, delimiter="\t")
-        pour.writerow(['Chocolate Fudge',])
+        pour.writerow(['Chocolate Fudge', ])
 
     return ff
+
 
 plugin.methods.register_function(
     function=syrup,
@@ -27,6 +26,7 @@ plugin.methods.register_function(
     description='A tiny proof of concept function'
 )
 
+
 def sprinkle(icecream: VanillaBeanFmt,
              capitalization: str,
              sort_ascending: bool = False,
@@ -34,12 +34,11 @@ def sprinkle(icecream: VanillaBeanFmt,
 
     contents = []
 
-    # Remove Blank Lines
     with icecream.open() as fh:
         for line in fh:
             contents.append(line)
 
-    # Sort if appropriate 
+    # Sort if appropriate
     sort_var = None
     if sort_ascending:
         sort_var = False
@@ -60,16 +59,11 @@ def sprinkle(icecream: VanillaBeanFmt,
 
     return contents
 
+
 sort_ascending, sort_descending, out_text = TypeMap({
-    (Bool % Choices([False]),
-     Bool % Choices([False])):
-     IceCream,
-    (Bool % Choices([True]), 
-     Bool % Choices([False])):
-     IceCream,
-    (Bool % Choices([False]), 
-     Bool % Choices([True])):
-     IceCream,
+    (Bool % Choices([False]), Bool % Choices([False])): IceCream,
+    (Bool % Choices([True]), Bool % Choices([False])): IceCream,
+    (Bool % Choices([False]), Bool % Choices([True])): IceCream,
 })
 
 plugin.methods.register_function(
