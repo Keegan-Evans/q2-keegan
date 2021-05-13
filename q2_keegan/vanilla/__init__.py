@@ -1,13 +1,13 @@
 import importlib
 
 from ._format import VanillaBeanFmt, VanillaBeanDirFmt
-from ._type import IceCream 
+from ._type import IceCream
 from ._methods import sprinkle, syrup
 from ._visualizer import scooper, hello_bean
 
 __all__ = ['VanillaBeanFmt', 'VanillaBeanDirFmt',
-           'IceCream', 
-           'syrup', 'sprinkle', 
+           'IceCream',
+           'syrup', 'sprinkle',
            'hello_bean', 'scooper',
            ]
 
