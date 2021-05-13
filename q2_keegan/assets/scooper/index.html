@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style type="text/css">
+  .viz {
+    padding-top: 55px;
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<pre>
+{%- for line in src_txt %}
+{{ line }}
+{%- endfor %}
+</pre>
+{% endblock %}
