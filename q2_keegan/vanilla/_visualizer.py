@@ -19,8 +19,7 @@ def hello_bean(output_dir: str) -> None:
 
 def scooper(output_dir: str, in_txt: list) -> None:
     index = os.path.join(TEMPLATES, 'scooper', 'index.html')
-    print(in_txt)
-    
+   
     q2templates.render(index,
                        output_dir,
                        context={'src_txt': in_txt,
