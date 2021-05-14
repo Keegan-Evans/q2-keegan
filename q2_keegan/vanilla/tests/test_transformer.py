@@ -8,16 +8,26 @@ class TestTransformers(TestPluginBase):
     package = 'q2_keegan.vanilla.tests'
 
     def test_vanilla_bean_to_py_list(self):
-         filename = 'vb-to-list.tsv'
-         test_data = ['foo', 'bar', 'baz']
 
-         filepath = self.get_data_path(filename)
+        filename = './transformer-test-data.tsv'
+        _, obs = self.transform_format(VanillaBeanFmt, list, filename)
 
-         transformer = self.get_transformer(VanillaBeanFmt, list)
+        exp = ['foo', 'bar', 'baz']
 
-         transformed_data = transformer(filepath)
+        self.assertEqual(exp, obs)
 
-         self.assertEqual(test_data, transformed_data)
+
+    def test_py_list_to_vanilla_bean(self):
+        td = ['foo', 'bar', 'baz']
+       
+        _, obs = self.transform_format(list, VanillaBeanFmt, td)
+            
+        filename = './transformer-test-data.tsv'
+        filepath = self.get_data_path(filename)
+        exp = VanillaBeanFmt(filepath, 'r')
+        
+        self.assertEqual(test_data, vanillabean)
+
 
 if __name__ == '__main__':
     unittest.main()
