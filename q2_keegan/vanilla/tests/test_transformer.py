@@ -1,4 +1,6 @@
 import unittest
+import os.path
+import csv
 
 from q2_keegan.vanilla import VanillaBeanFmt, VanillaBeanDirFmt
 from qiime2.plugin.testing import TestPluginBase
@@ -19,13 +21,27 @@ class TestTransformers(TestPluginBase):
 
     def test_py_list_to_vanilla_bean(self):
         test_data = ['foo', 'bar', 'baz']
+        filenames = {'obs': 'lst-to-vb.tsv',
+                     'exp': 'transformer-test-data.tsv'
+                     }
 
         transformer = self.get_transformer(list, VanillaBeanFmt)
-
+        filepaths = {}
+        for each in filenames.keys():
+            filepaths[each] = self.get_data_path(filenames[each])
+                
         obs = transformer(test_data)
         obs = obs.view(list)
-        exp =  test_data
-        
+
+        with open(filepaths['obs'], 'w') as fw:
+            for i in obs:
+                fw.write(str(i + '\n'))
+
+        with open(filepaths['obs'], 'r') as obs_file:
+            obs = obs_file.readlines()
+        with open(filepaths['exp']) as exp_file:
+            exp = exp_file.readlines()
+
         self.assertEqual(obs, exp)
         
 
