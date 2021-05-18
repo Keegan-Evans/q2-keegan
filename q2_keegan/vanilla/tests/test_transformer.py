@@ -18,17 +18,16 @@ class TestTransformers(TestPluginBase):
 
 
     def test_py_list_to_vanilla_bean(self):
-        td = ['foo', 'bar', 'baz']
-       
-        _, obs = self.transform_format(list, VanillaBeanFmt, td)
-            
-        filename = './transformer-test-data.tsv'
-        filepath = self.get_data_path(filename)
-        exp = VanillaBeanFmt(filepath, 'r')
-        
-        self.assertEqual(test_data, vanillabean)
+        test_data = ['foo', 'bar', 'baz']
 
+        transformer = self.get_transformer(list, VanillaBeanFmt)
+
+        obs = transformer(test_data)
+        obs = obs.view(list)
+        exp =  test_data
+        
+        self.assertEqual(obs, exp)
+        
 
 if __name__ == '__main__':
     unittest.main()
-
