@@ -13,7 +13,7 @@ class TestVanillaFormats(TestPluginBase):
         filenames = ['single-row-valid.txt', 'multi-row-valid.txt',
                      'multi-row-w-blank-lines-valid.txt',
                      ]
-        filepaths = [self.get_data_path(os.path.join('vanilla', filename))
+        filepaths = [self.get_data_path(os.path.join('data', filename))
                         for filename in filenames]
 
         for filpath in filepaths:
@@ -28,7 +28,7 @@ class TestVanillaFormats(TestPluginBase):
                      'multi-row-punc-non-valid.txt',
                      ]
 
-        filepaths = [self.get_data_path(os.path.join('vanilla', filename))
+        filepaths = [self.get_data_path(os.path.join('data', filename))
                         for filename in filenames]
 
         for filepath in filepaths:

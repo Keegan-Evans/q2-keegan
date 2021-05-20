@@ -18,12 +18,3 @@ def _py_list_to_vanilla_bean(in_list: list) ->  VanillaBeanFmt:
             fh.write(str(item.rstrip('\n') + '\n'))
 
     return ff
-
-
-# def _one(txt: VanillaBeanFmt) -> list:
-#     out_lst = _vanilla_bean_to_py_list(txt)
-#     return out_lst
-# 
-# 
-# def _two(lst: list) -> VanillaBeanFmt:
-#     return _py_list_to_vanilla_bean(lst)

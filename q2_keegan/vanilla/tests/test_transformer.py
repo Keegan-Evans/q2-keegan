@@ -31,13 +31,8 @@ class TestTransformers(TestPluginBase):
             filepaths[each] = self.get_data_path(filenames[each])
                 
         obs = transformer(test_data)
-        obs = obs.view(list)
 
-        with open(filepaths['obs'], 'w') as fw:
-            for i in obs:
-                fw.write(str(i + '\n'))
-
-        with open(filepaths['obs'], 'r') as obs_file:
+        with obs.open() as obs_file:
             obs = obs_file.readlines()
         with open(filepaths['exp']) as exp_file:
             exp = exp_file.readlines()
