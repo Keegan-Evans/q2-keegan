@@ -22,7 +22,6 @@ class TestScooper(TestPluginBase):
                     test_qza)
 
             index_fp = os.path.join(output_dir, 'index.html')
-            shutil.copyfile(index_fp, '/Users/keegan/Desktop/tester/index.html')
 
             with open(index_fp, 'r') as ih:
                 output_txt = ih.readlines()
