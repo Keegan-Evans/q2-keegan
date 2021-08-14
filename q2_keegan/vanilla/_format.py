@@ -15,11 +15,14 @@ class VanillaBeanFmt(model.TextFileFormat):
             illegal_chars = {}
 
             for line_number, line in enumerate(fh):
-                illegal_line_chars = [character for character in line if not
-                                      re.match(accepted_characters,
-                                               character)]
-                if illegal_line_chars:
-                    illegal_chars[line_number] = illegal_line_chars
+
+                illegal_line_chars = []
+
+                for character in line:
+                    if not re.match(accepted_characters, character):
+                        illegal_line_chars.append(character)
+                
+                illegal_chars[line_number] = illegal_line_chars
 
             if illegal_chars:
                 raise ValidationError(
@@ -30,4 +33,5 @@ class VanillaBeanFmt(model.TextFileFormat):
 VanillaBeanDirFmt = model.SingleFileDirectoryFormat('VanillaBeanDirFmt',
                                                     'vanillabean.tsv',
                                                     VanillaBeanFmt)
+
 plugin.register_formats(VanillaBeanFmt, VanillaBeanDirFmt)
