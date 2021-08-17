@@ -1,8 +1,8 @@
-*.txt 
+#*.txt 
 *.qza
 *.qzv
 ./qiime2-latest-py38-osx-conda.yml
-./test/
+#./test/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
