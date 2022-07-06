@@ -12,3 +12,4 @@ __all__ = ['VanillaBeanFmt', 'VanillaBeanDirFmt',
            ]
 
 importlib.import_module('q2_keegan.vanilla._transformer')
+importlib.import_module('q2_keegan.vanilla._validator')

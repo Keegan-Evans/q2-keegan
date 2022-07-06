@@ -4,6 +4,11 @@ from ..plugin_setup import plugin
 
 from . import VanillaBeanDirFmt
 
+#class HeaderlessType(SemanticType):
+#    def __init__(self):
+#        self._header = None
+#        super().__init__(*args, **kwargs)
+
 IceCream = SemanticType('IceCream')
 
 plugin.register_semantic_types(IceCream)

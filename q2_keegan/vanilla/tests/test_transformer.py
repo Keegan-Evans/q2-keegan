@@ -4,6 +4,7 @@ import csv
 
 from q2_keegan.vanilla import VanillaBeanFmt, VanillaBeanDirFmt
 from qiime2.plugin.testing import TestPluginBase
+import pandas as pd
 
 
 class TestTransformers(TestPluginBase):
@@ -29,7 +30,7 @@ class TestTransformers(TestPluginBase):
         filepaths = {}
         for each in filenames.keys():
             filepaths[each] = self.get_data_path(filenames[each])
-                
+
         obs = transformer(test_data)
 
         with obs.open() as obs_file:
@@ -38,7 +39,15 @@ class TestTransformers(TestPluginBase):
             exp = exp_file.readlines()
 
         self.assertEqual(obs, exp)
-        
+
+    def test_vanilla_bean_to_df(self):
+        filename = './transformer-test-data.tsv'
+        target_fp = self.get_data_path(filename)
+
+        _, obs = self.transform_format(VanillaBeanFmt, pd.DataFrame, filename)
+        exp = pd.DataFrame(["foo", "bar", "baz"])
+        assert False
+
 
 if __name__ == '__main__':
     unittest.main()
